@@ -22,20 +22,20 @@ int main() {
   Event& event = pythia.event;
 
   pythia.readString("Beams:frameType = 2");
-  //electron
-  pythia.readString("Beams:idA = 11");
-  //muon
-  //pythia.readString("Beams:idA = 13");
   //proton
-  pythia.readString("Beams:idB = 2212");
+  pythia.readString("Beams:idA = 2212");
+  //electron
+  pythia.readString("Beams:idB = 11");
+  //muon
+  //pythia.readString("Beams:idB = 13");
 
   //specify the beam energies
   //electron: 5-30 GeV for EIC
   //proton:   50-250 GeV for EIC
   //muon ion collider: 960 GeV muon, 275 GeV proton
-  pythia.settings.parm("Beams:eA = 18");
-  //pythia.settings.parm("Beams:eA = 960");
-  pythia.settings.parm("Beams:eB = 275");
+  pythia.readString("Beams:eA = 275");
+  pythia.readString("Beams:eB = 18");
+  //pythia.readString("Beams:eB = 960");
   
   //neutral current
   pythia.readString("WeakBosonExchange:ff2ff(t:gmZ) = on");
@@ -112,7 +112,6 @@ int main() {
     W2    = (pProton + pPhoton).m2Calc();
     x     = Q2 / (2. * pProton * pPhoton);
     y     = (pProton * pPhoton) / (pProton * peIn);
-
     if(y<0.01 || y>0.95) continue;
 
     //getting pythia particle info
